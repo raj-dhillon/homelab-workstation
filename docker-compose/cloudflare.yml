@@ -1,0 +1,11 @@
+version: "3.3"
+services:
+  cloudflared:
+    image: cloudflare/cloudflared:latest
+    restart: unless-stopped
+    command: tunnel --no-autoupdate run --token ${CLOUDFLARE_TOKEN}
+    networks:
+      - proxy_tunnel
+      
+networks:
+  proxy_tunnel:
