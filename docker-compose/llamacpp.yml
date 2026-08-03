@@ -1,0 +1,32 @@
+services:
+  llama-cpp:
+    image: ghcr.io/ggml-org/llama.cpp:server-cuda
+    container_name: llama-cpp
+    restart: unless-stopped
+    gpus: all
+    ports:
+      - 8080:8080
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+      - NVIDIA_DRIVER_CAPABILITIES=compute,utility
+    volumes:
+      - /mnt/s/raj-storage/models/gguf:/models
+      - /mnt/s/raj-storage/cache:/cache
+      - /mnt/s/raj-storage/outputs:/outputs
+    command:
+      - "-m"
+      - "/models/Gemma-4-E4B-Uncensored-HauhauCS-Aggressive-Q8_K_P.gguf"
+      - "--host"
+      - "0.0.0.0"
+      - "--port"
+      - "8080"
+      - "-ngl"
+      - "999"
+      - "--ctx-size"
+      - "8192"
+    networks:
+      - raj-cloudflare_proxy_tunnel
+
+networks:
+  raj-cloudflare_proxy_tunnel:
+    external: true
