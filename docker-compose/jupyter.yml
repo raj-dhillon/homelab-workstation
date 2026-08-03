@@ -1,0 +1,25 @@
+services:
+  jupyterlab:
+    image: quay.io/jupyter/pytorch-notebook:cuda12-python-3.12
+    container_name: jupyterlab
+    restart: unless-stopped
+    gpus: all
+    ports:
+      - "8888:8888"
+    networks:
+      - raj-cloudflare_proxy_tunnel
+    volumes:
+      - /raj/jupyter/workspace:/home/jovyan/work
+      - /mnt/s/raj-storage:/home/jovyan/work/storage
+
+    environment:
+      JUPYTER_ENABLE_LAB: "yes"
+
+    command: >
+      start-notebook.py
+      --IdentityProvider.token=${LOGIN_TOKEN}
+      --ServerApp.root_dir=/home/jovyan/work
+
+networks:
+  raj-cloudflare_proxy_tunnel:
+    external: true
