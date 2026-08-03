@@ -1,0 +1,24 @@
+services:
+  code-server:
+    image: lscr.io/linuxserver/code-server:latest
+    container_name: code-server
+    restart: unless-stopped
+    gpus: all
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=America/Los_Angeles
+      - PASSWORD=${PASS}
+      - SUDO_PASSWORD=${SUDO_PASS}
+    ports:
+      - 8443:8443
+    volumes:
+      - /raj/jupyter/workspace:/config/workspace
+      - /raj/jupyter/code-config:/config
+      - /mnt/s/raj-storage:/config/workspace/storage
+    networks:
+      - raj-cloudflare_proxy_tunnel
+
+networks:
+  raj-cloudflare_proxy_tunnel:
+    external: true
