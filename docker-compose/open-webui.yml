@@ -2,12 +2,17 @@ services:
   open-webui:
     image: ghcr.io/open-webui/open-webui:main
     container_name: open-webui
+
     restart: unless-stopped
+
     volumes:
       - /mnt/s/raj-storage/open-webui:/app/backend/data
+
     environment:
       - OLLAMA_BASE_URL=http://llama-cpp:8080
       - OPENAI_API_BASE_URL=http://llama-cpp:8080/v1
+      - ENABLE_RAG_LOCAL_WEB_FETCH=true
+
     networks:
       - raj-cloudflare_proxy_tunnel
 
