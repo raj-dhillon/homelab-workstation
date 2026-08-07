@@ -15,10 +15,12 @@ services:
 
     ports:
       - "8188:8188"
+
     volumes:
       - /mnt/s/raj-storage/models/comfy:/root/ComfyUI/models
       - /mnt/s/raj-storage/outputs/comfy:/root/ComfyUI/output
       - /mnt/s/raj-storage/cache:/root/.cache
+      - /mnt/s/raj-storage/workflows:/root/ComfyUI/user/default/workflows
 
     networks:
       - raj-cloudflare_proxy_tunnel
