@@ -2,7 +2,7 @@ apiVersion: dashboard.grafana.app/v2
 kind: Dashboard
 metadata:
   name: ad2wzfv
-  generation: 10
+  generation: 11
   creationTimestamp: '2026-08-14T04:59:06Z'
   labels: {}
   annotations: {}
@@ -1442,6 +1442,8 @@ spec:
             fieldConfig:
               defaults:
                 unit: percent
+                min: 0
+                max: 100
                 thresholds:
                   mode: absolute
                   steps:
@@ -1536,6 +1538,8 @@ spec:
               defaults:
                 unit: percent
                 decimals: 0
+                min: 0
+                max: 100
                 thresholds:
                   mode: absolute
                   steps:
