@@ -169,6 +169,8 @@ Current dashboard metrics include:
 * Network errors
 * Server uptime
 
+<sub>* Funnily enough, the day after I set this up, the server went down randomly. We were able to investigate and find out that the city was replacing the electric meters in our area, and must have done it in that specific window of time.</sub>
+
 ## Node Exporter
 
 Collects Linux host-level metrics including:
